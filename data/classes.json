@@ -1,0 +1,16 @@
+[
+  { "id": "vism-2001", "code": "VISM-2001", "title": "Introduction to Film Studies", "category": "Visual Culture - Media" },
+  { "id": "vism-2002", "code": "VISM-2002", "title": "History of New Media Art", "category": "Visual Culture - Media" },
+  { "id": "vism-2003", "code": "VISM-2003", "title": "Introduction to Games Studies", "category": "Visual Culture - Media" },
+  { "id": "vism-2006", "code": "VISM-2006", "title": "Critical Play", "category": "Visual Culture - Media" },
+  { "id": "vism-3002", "code": "VISM-3002", "title": "Data Vis & Visual Analytics", "category": "Visual Culture - Media" },
+  { "id": "vism-3003", "code": "VISM-3003", "title": "Animation: Critical Perspect", "category": "Visual Culture - Media" },
+  { "id": "vism-4001", "code": "VISM-4001", "title": "Experimental Film & Media", "category": "Visual Culture - Media" },
+  { "id": "vism-4003", "code": "VISM-4003", "title": "Contemporary Documentary Media", "category": "Visual Culture - Media" },
+  { "id": "vism-4004", "code": "VISM-4004", "title": "Future Cinema-Dig Narratives", "category": "Visual Culture - Media" },
+  { "id": "vism-4006", "code": "VISM-4006", "title": "Body & Machine: The Posthuman", "category": "Visual Culture - Media" },
+  { "id": "vism-4007", "code": "VISM-4007", "title": "Feminist Film & Video", "category": "Visual Culture - Media" },
+  { "id": "vism-4009", "code": "VISM-4009", "title": "Internet, Globaliz & Resistance", "category": "Visual Culture - Media" },
+  { "id": "vism-4011", "code": "VISM-4011", "title": "Anime: Dreams and Machines", "category": "Visual Culture - Media" },
+  { "id": "vism-4898", "code": "VISM-4898", "title": "Independent Study", "category": "Visual Culture - Media" }
+]
