@@ -112,3 +112,16 @@ button:hover {
   color: #000080;
 }
 
+/* Safety: if some page relies on default black text, force readable defaults */
+.square, .card, .search-results, .review {
+  color: #0000cc;          /* your blue text */
+  background: #fff;        /* ensure white behind it */
+}
+
+/* If your categories are links/cards, force them to show */
+.square a, .card a, .search-results a, .review a {
+  color: #cc0000;          /* your red links */
+  text-decoration: underline;
+}
+
+
