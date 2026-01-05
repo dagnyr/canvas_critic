@@ -1,31 +1,15 @@
 body {
-  font-family: Calibri, Candara, "Segoe UI", Arial, sans-serif;
+  font-family: "Open Sans", system-ui, Arial, sans-serif;
   max-width: 850px;
   margin: 40px auto;
   padding: 0 16px;
-
-  /* text color only */
-  color: #0000cc;
 }
 
-h1 { 
-  margin-bottom: 6px; 
-}
+h1 { margin-bottom: 6px; }
+h2 { margin-top: 22px; }
 
-h2 { 
-  margin-top: 22px; 
-}
-
-a {
-  color: #cc0000;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* everything below is UNCHANGED except color where it already existed */
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
 
 .square {
   border: 1px solid #e5e5e5;
@@ -58,9 +42,7 @@ a:hover {
   background: #f6f6f6;
 }
 
-.muted { 
-  color: #666; 
-}
+.muted { color: #666; }
 
 .card {
   border: 1px solid #eee;
@@ -75,7 +57,6 @@ textarea, select {
   padding: 8px;
   border-radius: 10px;
   border: 1px solid #ddd;
-  font-family: inherit;
 }
 
 button {
@@ -85,7 +66,6 @@ button {
   border: 1px solid #ddd;
   background: white;
   cursor: pointer;
-  font-family: inherit;
 }
 
 .review {
