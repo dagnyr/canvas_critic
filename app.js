@@ -106,20 +106,21 @@ async function renderCategory() {
 async function fetchReviews(classId) {
   const res = await fetch(`${WORKER_URL}/reviews?class_id=${encodeURIComponent(classId)}`);
   if (!res.ok) throw new Error("Failed to fetch reviews");
-  return await res.json(); // array
+  return await res.json(); // { summary, reviews }
 }
 
-async function postReview(classId, rating, comment) {
+async function postReview(payload) {
   const res = await fetch(`${WORKER_URL}/reviews`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ class_id: classId, rating, comment })
+    body: JSON.stringify(payload)
   });
   if (!res.ok) {
     const txt = await res.text();
     throw new Error(txt || "Failed to submit review");
   }
 }
+
 
 // ========= CLASS PAGE =========
 async function renderClass() {
@@ -149,43 +150,67 @@ async function renderClass() {
     summary.textContent = "Loading…";
     reviewsDiv.innerHTML = "";
 
-    const reviews = await fetchReviews(cls.id);
-
-    if (reviews.length === 0) {
-      summary.textContent = "No reviews yet.";
-      reviewsDiv.innerHTML = `<p class="muted">Be the first to review this class.</p>`;
-      return;
-    }
-
-    const avg = reviews.reduce((a, r) => a + Number(r.rating), 0) / reviews.length;
-    summary.textContent = `Average: ${avg.toFixed(2)} / 5 (${reviews.length} review${reviews.length === 1 ? "" : "s"})`;
-
-    reviewsDiv.innerHTML = reviews.map(r => {
-      const date = r.created_at ? new Date(r.created_at).toLocaleString() : "";
-      return `
-        <div class="review">
-          <div class="meta">
-            <span class="rating">⭐ ${escapeHtml(String(r.rating))}/5</span>
-            <span>${escapeHtml(date)}</span>
-          </div>
-          <div>${escapeHtml(r.comment || "")}</div>
-        </div>
-      `;
-    }).join("");
+  const data = await fetchReviews(cls.id);
+  const summaryObj = data.summary;
+  const reviews = data.reviews;
+  
+  if (!summaryObj || summaryObj.n === 0) {
+    summary.textContent = "No reviews yet.";
+    reviewsDiv.innerHTML = `<p class="muted">Be the first to review this class.</p>`;
+    return;
   }
+  
+  summary.innerHTML =
+    `Overall: <b>${summaryObj.overall_avg.toFixed(2)}</b> / 5 (${summaryObj.n})<br>` +
+    `Difficulty: ${summaryObj.difficulty_avg.toFixed(2)} / 5<br>` +
+    `Engaging: ${summaryObj.engaging_avg.toFixed(2)} / 5<br>` +
+    `Instruction: ${summaryObj.instruction_avg.toFixed(2)} / 5<br>` +
+    `Final intensity: ${summaryObj.final_intensity_avg.toFixed(2)} / 5<br>` +
+    (summaryObj.hours_per_week_avg == null ? "" : `Hours/week: ${summaryObj.hours_per_week_avg.toFixed(1)}<br>`) +
+    (summaryObj.recommend_pct == null ? "" : `Would recommend: ${summaryObj.recommend_pct.toFixed(0)}%`);
+  
+  reviewsDiv.innerHTML = reviews.map(r => {
+    const date = r.created_at ? new Date(r.created_at).toLocaleString() : "";
+    const hours = (r.hours_per_week == null || r.hours_per_week === "") ? "" : ` · Hours/week: ${escapeHtml(String(r.hours_per_week))}`;
+    const rec = Number(r.recommend) === 1 ? " · Would recommend" : "";
+    const comment = (r.comment || "").trim();
+  
+    return `
+      <div class="review">
+        <div class="meta">
+          <span class="rating">Overall ⭐ ${escapeHtml(String(r.overall))}/5</span>
+          <span>${escapeHtml(date)}</span>
+        </div>
+        <div class="muted">
+          Difficulty: ${escapeHtml(String(r.difficulty))}/5 ·
+          Engaging: ${escapeHtml(String(r.engaging))}/5 ·
+          Instruction: ${escapeHtml(String(r.instruction))}/5 ·
+          Final: ${escapeHtml(String(r.final_intensity))}/5
+          ${hours}${rec}
+        </div>
+        ${comment ? `<div>${escapeHtml(comment)}</div>` : ""}
+      </div>
+    `;
+  }).join("");
+
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     msg.textContent = "";
 
     const fd = new FormData(form);
-    const rating = Number(fd.get("rating"));
-    const comment = String(fd.get("comment") || "").trim();
-
-    try {
-      form.querySelector("button").disabled = true;
-      msg.textContent = "Posting…";
-      await postReview(cls.id, rating, comment);
+      const payload = {
+        class_id: cls.id,
+        overall: Number(fd.get("overall")),
+        difficulty: Number(fd.get("difficulty")),
+        engaging: Number(fd.get("engaging")),
+        instruction: Number(fd.get("instruction")),
+        final_intensity: Number(fd.get("final_intensity")),
+        hours_per_week: fd.get("hours_per_week") === "" ? null : Number(fd.get("hours_per_week")),
+        recommend: fd.get("recommend") === "on",
+        comment: String(fd.get("comment") || "").trim()
+      };
+      await postReview(payload);
       form.reset();
       msg.textContent = "Posted!";
       await refresh();
