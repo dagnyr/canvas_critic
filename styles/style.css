@@ -1,75 +1,101 @@
 body {
-  font-family: "Open Sans", system-ui, Arial, sans-serif;
+  font-family: Calibri, Candara, "Segoe UI", Arial, sans-serif;
   max-width: 850px;
   margin: 40px auto;
   padding: 0 16px;
+
+  /* classic internet blue text */
+  color: #0000cc;
+  background: #ffffff;
+}
+
+h1, h2 {
+  color: #000080; /* slightly darker navy for headings */
 }
 
 h1 { margin-bottom: 6px; }
 h2 { margin-top: 22px; }
 
-a { text-decoration: none; }
-a:hover { text-decoration: underline; }
+/* old-school links: red + underlined */
+a {
+  color: #cc0000;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #ff0000;
+  background: #ffffcc; /* subtle old-school hover highlight */
+}
 
 .square {
-  border: 1px solid #e5e5e5;
-  border-radius: 12px;
+  border: 1px solid #999;
+  border-radius: 6px;   /* less modern */
   padding: 16px;
   margin-top: 14px;
+  background: #fdfdfd;
 }
 
 .search {
   width: 100%;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  font-size: 16px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #999;
+  font-size: 15px;
+  font-family: inherit;
 }
 
 .search-results {
   margin-top: 10px;
-  border: 1px solid #eee;
-  border-radius: 10px;
+  border: 1px solid #999;
+  border-radius: 4px;
   padding: 8px;
 }
 
 .search-item {
   padding: 6px 8px;
-  border-radius: 8px;
 }
 
 .search-item:hover {
-  background: #f6f6f6;
+  background: #eeeeff;
 }
 
-.muted { color: #666; }
+.muted {
+  color: #5555aa; /* still blue-ish, just muted */
+}
 
 .card {
-  border: 1px solid #eee;
+  border: 1px solid #999;
   padding: 12px;
-  border-radius: 12px;
+  border-radius: 6px;
   display: grid;
   gap: 10px;
   max-width: 560px;
+  background: #ffffff;
 }
 
 textarea, select {
-  padding: 8px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #999;
+  font-family: inherit;
 }
 
 button {
   width: fit-content;
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-  background: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #666;
+  background: #f0f0f0;
   cursor: pointer;
+  font-family: inherit;
+}
+
+button:hover {
+  background: #e0e0e0;
 }
 
 .review {
-  border-top: 1px solid #eee;
+  border-top: 1px solid #999;
   padding: 12px 0;
 }
 
@@ -77,11 +103,12 @@ button {
   display: flex;
   gap: 12px;
   align-items: center;
-  color: #666;
+  color: #5555aa;
   font-size: 0.95em;
 }
 
 .review .rating {
   font-weight: 700;
-  color: #111;
+  color: #000080;
 }
+
