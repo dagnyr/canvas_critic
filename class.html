@@ -15,24 +15,62 @@
       <div id="summary" class="summary muted">Loading…</div>
 
       <h2>submit a review</h2>
+
       <form id="reviewForm" class="card">
-        <label>
-          Rating (1–5):
-          <select name="rating" required>
+        <label>Overall (1–5):
+          <select name="overall" required>
             <option value="">Select…</option>
-            <option value="1">1</option>
+            <option value="1 (lowest)">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5 (highest)">5</option>
+          </select>
+        </label>
+      
+        <label>Difficulty (1–5):
+          <select name="difficulty" required>
+            <option value="">Select…</option>
+            <option value="1 (Not difficult)">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5 (Very difficult)">5</option>
+          </select>
+        </label>
+      
+        <label>Engaging (1–5):
+          <select name="engaging" required>
+            <option value="">Select…</option>
+            <option value="1 (Not engaging)">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5 (Very engaging)">5</option>
+          </select>
+        </label>
+      
+        <label>quality of instruction (1–5):
+          <select name="instruction" required>
+            <option value="">Select…</option>
+            <option value="1 (Not Great)">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5 (Amazing)">5</option>
+          </select>
+        </label>
+      
+        <label>hours/week outside class (estimate):
+          <input name="hours_per_week" type="number" min="0" max="80" step="1" placeholder="e.g., 6">
+        </label>
+      
+        <label>
+          finals / exam intensity (1–5):
+          <select name="final_intensity" required>
+            <option value="">Select…</option>
+            <option value="1">1 (very light)</option>
             <option value="2">2</option>
-            <option value="3">3</option>
+            <option value="3">3 (moderate)</option>
             <option value="4">4</option>
-            <option value="5">5</option>
+            <option value="5">5 (very demanding)</option>
           </select>
         </label>
 
-        <label>
-          Comment (optional - please no personally identifiable info or innapropriate comments):
-          <textarea name="comment" rows="4" placeholder="Short comment (optional)"></textarea>
+        <label class="checkbox">
+          <input name="recommend" type="checkbox">
+          would you recommend this class?
         </label>
 
+      
+        <label>Comments (keep it respectful pls):
+          <textarea name="comment" rows="4"></textarea>
+        </label>
+      
         <button type="submit">Post</button>
         <div id="formMsg" class="muted"></div>
       </form>
