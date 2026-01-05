@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>class</title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link href="styles/style.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <a id="backLink" href="./">← home</a>
+    <h1 id="classTitle">class</h1>
+
+    <div class="square">
+      <div id="summary" class="summary muted">Loading…</div>
+
+      <h2>submit a review</h2>
+      <form id="reviewForm" class="card">
+        <label>
+          Rating (1–5):
+          <select name="rating" required>
+            <option value="">Select…</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+
+        <label>
+          Comment (optional - please no personally identifiable info or innapropriate comments):
+          <textarea name="comment" rows="4" placeholder="Short comment (optional)"></textarea>
+        </label>
+
+        <button type="submit">Post</button>
+        <div id="formMsg" class="muted"></div>
+      </form>
+
+      <h2>reviews</h2>
+      <div id="reviews"></div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+      window.PAGE = "class";
+      init();
+    </script>
+  </body>
+</html>
